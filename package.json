@@ -1,9 +1,18 @@
 {
-  "name": "@local/dsh-wireshark-mcp",
-  "version": "1.0.0",
+  "name": "dsh-wireshark-mcp",
+  "version": "1.1.0",
   "private": true,
+  "description": "DeepSeek Harness bundle that connects the Wireshark MCP server (tshark packet analysis).",
+  "license": "MIT",
   "type": "module",
-  "description": "Connects the Wireshark MCP server (tshark packet analysis) to DeepSeek Harness.",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "wireshark",
+    "tshark",
+    "pcap",
+    "mcp"
+  ],
   "exports": {
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
@@ -12,7 +21,8 @@
     "cordis.patch.yml",
     "locale/*.json",
     "icon.svg",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "dsh": {
     "bundle": {

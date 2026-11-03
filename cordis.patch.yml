@@ -1,5 +1,6 @@
 # Wireshark MCP connection for DeepSeek Harness.
 # One stdio server; its tools appear to the agent as mcp__wireshark__<tool>.
+# Override any value with the environment variables named below.
 - insert:
     - id: wireshark-mcp
       name: '@deepseek-ai/dsh-mcp-client'
@@ -7,21 +8,26 @@
         serverName: wireshark
         transport: stdio
         # uvx runs the pinned PyPI package without a global install.
-        # Override with an absolute path when uvx is not on the Harness PATH.
+        # WIRESHARK_MCP_COMMAND: absolute path when uvx is not on the Harness PATH.
         command: !!js process.env.WIRESHARK_MCP_COMMAND ?? 'uvx'
         args:
           - --from
           - wireshark-mcp
           - wireshark-mcp
           - serve
-          # analysis = 42 tools, no live capture and no caller-directed file writes.
-          # Use 'full' for live capture and file-writing tools; 'core' for the smallest set.
+          # WIRESHARK_MCP_PROFILE: analysis (42 tools) | full (54) | core (34).
+          # full adds live capture, merge/editcap/filter-save and file writes.
           - --profile
-          - analysis
+          - !!js process.env.WIRESHARK_MCP_PROFILE ?? 'analysis'
         env:
           # Wireshark's installer does not always add its own directory to PATH,
           # and the server needs tshark (plus capinfos, editcap, text2pcap) to work.
           PATH: !!js 'process.platform === "win32" ? ((process.env.ProgramFiles || "C:/Program Files") + "/Wireshark;" + (process.env.PATH || "")) : process.env.PATH'
+          # Ceiling for one tool result; the default truncates large captures.
+          WIRESHARK_MCP_MAX_RESULT_CHARS: !!js process.env.WIRESHARK_MCP_MAX_RESULT_CHARS ?? '8000'
+          # Directory allowlist for the file-writing tools. Empty means none:
+          # they fail closed, which is the upstream default for --profile full.
+          WIRESHARK_MCP_ALLOWED_DIRS: !!js process.env.WIRESHARK_MCP_ALLOWED_DIRS ?? ''
         failOnStartupError: true
-        # Large captures and index-backed aggregations need more than the 60 s default.
-        toolCallTimeoutMs: 180000
+        # WIRESHARK_MCP_TIMEOUT_MS: large captures and index-backed aggregates need more than 60 s.
+        toolCallTimeoutMs: !!js 'process.env.WIRESHARK_MCP_TIMEOUT_MS ? Number(process.env.WIRESHARK_MCP_TIMEOUT_MS) : 180000'

@@ -12,19 +12,21 @@ One command connects the upstream MCP server to DSH, so the model gets its tools
 ## Install
 
 ```bash
-dsh plugin --profile desktop add "github:<your-account>/dsh-wireshark-mcp#main"
+dsh plugin --profile desktop add "gitlab:andrey23525/deepseek-wireshark-mcp#master"
 ```
 
-Restart the Harness. The model sees `mcp__wireshark__*` tools.
+Repository: <https://gitlab.com/andrey23525/deepseek-wireshark-mcp>. Restart the Harness. The
+model sees `mcp__wireshark__*` tools.
 
-Without the CLI, use the Harness Web **Plugins** page and install the same spec, or a local
-checkout:
+Without the CLI, use the Harness Web **Plugins** page and install the same spec. For development,
+install the checkout directory instead:
 
 ```text
 C:\Work\deepseek-wireshark-mcp
 ```
 
-Installing a local directory links it, so later edits need only a bundle re-enable.
+Installing a local directory links it, so later edits need only a bundle re-enable. Installing the
+git spec copies the package: push first, then reinstall to pick up changes.
 
 ## Prerequisites
 

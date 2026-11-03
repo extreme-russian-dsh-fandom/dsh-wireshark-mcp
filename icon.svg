@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Packet analyzer">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b3d5c"/>
+      <stop offset="1" stop-color="#04121c"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <path d="M6 40h12l5-11 7 22 6-31 6 24 4-9h12" fill="none" stroke="#5fd0ff" stroke-width="3"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M40 20c6-6 14-7 18-6-1 5-4 12-10 16l-6 4 2-9z" fill="#e8f7ff" opacity="0.9"/>
+  <circle cx="13" cy="16" r="3" fill="#ffd166"/>
+  <path d="M20 12h12" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+</svg>

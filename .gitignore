@@ -1,0 +1,40 @@
+# OS junk
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Node / pnpm
+node_modules/
+pnpm-debug.log*
+npm-debug.log*
+.npm/
+.pnpm-store/
+
+# Python (probe scripts, local venvs)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Captures: keep the committed fixture, ignore everything captured or exported locally
+*.pcap
+*.pcapng
+*.cap
+*.keylog
+*.parquet
+!probe/sample.pcap
+
+# Wireshark MCP local state (case files, DuckDB index cache)
+.case/
+index/
+*.duckdb
+*.duckdb.wal
+
+# Reports and dumps produced while analyzing
+report.md
+*.hex

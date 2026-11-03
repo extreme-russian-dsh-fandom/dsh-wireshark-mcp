@@ -1,0 +1,27 @@
+# Wireshark MCP connection for DeepSeek Harness.
+# One stdio server; its tools appear to the agent as mcp__wireshark__<tool>.
+- insert:
+    - id: wireshark-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: wireshark
+        transport: stdio
+        # uvx runs the pinned PyPI package without a global install.
+        # Override with an absolute path when uvx is not on the Harness PATH.
+        command: !!js process.env.WIRESHARK_MCP_COMMAND ?? 'uvx'
+        args:
+          - --from
+          - wireshark-mcp
+          - wireshark-mcp
+          - serve
+          # analysis = 42 tools, no live capture and no caller-directed file writes.
+          # Use 'full' for live capture and file-writing tools; 'core' for the smallest set.
+          - --profile
+          - analysis
+        env:
+          # Wireshark's installer does not always add its own directory to PATH,
+          # and the server needs tshark (plus capinfos, editcap, text2pcap) to work.
+          PATH: !!js 'process.platform === "win32" ? ((process.env.ProgramFiles || "C:/Program Files") + "/Wireshark;" + (process.env.PATH || "")) : process.env.PATH'
+        failOnStartupError: true
+        # Large captures and index-backed aggregations need more than the 60 s default.
+        toolCallTimeoutMs: 180000

@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Wireshark Packet Analyzer",
+    "description": "Connects the Wireshark MCP server: dissect pcaps with tshark, aggregate traffic, run security detectors, decrypt TLS and inspect streams."
+  }
+}

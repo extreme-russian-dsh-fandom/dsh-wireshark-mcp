@@ -1,5 +1,7 @@
 # dsh-wireshark-mcp
 
+**English** · [Русский](README.ru.md)
+
 DeepSeek Harness adapter for [bx33661/Wireshark-MCP](https://github.com/bx33661/Wireshark-MCP).
 
 One command connects the upstream MCP server to DSH, so the model gets its tools as
@@ -11,18 +13,33 @@ One command connects the upstream MCP server to DSH, so the model gets its tools
 
 ## Install
 
+Current source — use this one; it is where future changes and fixes land:
+
+```bash
+dsh plugin --profile desktop add "github:extreme-russian-dsh-fandom/dsh-wireshark-mcp#master"
+```
+
+Repository: <https://github.com/extreme-russian-dsh-fandom/dsh-wireshark-mcp>.
+
+Legacy source (GitLab):
+
 ```bash
 dsh plugin --profile desktop add "gitlab:andrey23525/deepseek-wireshark-mcp#master"
 ```
 
-Repository: <https://gitlab.com/andrey23525/deepseek-wireshark-mcp>. Restart the Harness. The
-model sees `mcp__wireshark__*` tools.
+Repository: <https://gitlab.com/andrey23525/deepseek-wireshark-mcp>.
 
-Without the CLI, use the Harness Web **Plugins** page and install the same spec. For development,
+> **NOTE (05-11-2026):** the two repositories carry the same code today. The GitLab one is the
+> older location — it is not updated anymore and may fall behind, so the GitHub spec above takes
+> precedence whenever both are listed.
+
+Restart the Harness. The model sees `mcp__wireshark__*` tools.
+
+Without the CLI, use the Harness Web **Plugins** page and install either spec. For development,
 install the checkout directory instead:
 
 ```text
-C:\Work\deepseek-wireshark-mcp
+C:\Work\dsh-wireshark-mcp
 ```
 
 Installing a local directory links it, so later edits need only a bundle re-enable. Installing the
